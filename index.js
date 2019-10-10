@@ -62,13 +62,18 @@ ts.start().then(() => {
 // Analyser du html
 // DOc : https://github.com/cheeriojs/cheerio
 // ou encore : https://github.com/sfrenot/competence/blob/master/formation/crawl.coffee
-getHtml('https://www.insa-lyon.fr/fr/formation/parcours/729/4/1').then((html) => {
-  const $ = cheerio.load(html);
-  const urls = $('#block-system-main .content-offre-formations table a').map(function() {
-    return $(this).attr('href');
-  }).get()
-  // console.log("urls:", urls);
-})
+const extractUrlPdfs = (url) => {
+  return getHtml(url).then((html) => {
+    const $ = cheerio.load(html);
+    const urls = $('#block-system-main .content-offre-formations table a').map(function() {
+      return $(this).attr('href');
+    }).get()
+    // console.log("urls:", urls);
+    return urls;
+  })
+}
+
+extractUrlPdfs('https://www.insa-lyon.fr/fr/formation/parcours/729/4/1') // .then(console.log)
 
 // Créer une base de données
 const db = {}
