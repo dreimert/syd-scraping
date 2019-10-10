@@ -27,9 +27,48 @@ const getPdf = (url) => {
   });
 }
 
+// Récupérer la liste des formations
+const getFormations = () => {
+  return getHtml('https://www.insa-lyon.fr/fr/formation/diplomes/ING').then((html) => {
+    const $ = cheerio.load(html);
+    // Pour obtenir le selecteur, j'explore la page avec mon navigateur
+    const urls = $('.diplome table a').map(function() {
+      return $(this).attr('href');
+    }).get();
+    return urls; // Ne pas oublier de retourner un résultat
+  })
+}
+
+const getPdfUrlsParcours = (url) => {
+  return getHtml(url).then((html) => {
+    const $ = cheerio.load(html);
+    const urls = $('#block-system-main .content-offre-formations table a').map(function() {
+      return $(this).attr('href');
+    }).get();
+    return urls; // Ne pas oublier de retourner un résultat
+  })
+}
+
+// Renvoie plus de 3000 urls
+const getAllPdfUrl = () => {
+  return getFormations().then((urls) => {
+    // Pour chaque url de formation, on récupère la liste des urls de pdf.
+    // Ici, je fais toutes les requetes en parallèle
+    // ce qui peut poser des problèmes si la machine n'a pas assez de mémoire.
+    return Promise.all(urls.map((url) => {
+      // url relative : /fr/formation/parcours/729/5/1
+      return getPdfUrlsParcours(`https://www.insa-lyon.fr${url}`)
+    })).then((urls) => {
+      // urls de la forme [[...], [...], [...]]
+      return [].concat.apply([], urls); // Applatissement du tableau
+    })
+  })
+}
+
 // Lance le serveur Tika
 // Doc : https://www.npmjs.com/package/tika-server
 const ts = new TikaServer();
+const db = {}
 
 ts.on("debug", (msg) => {
   // console.log(`DEBUG: ${msg}`)
@@ -37,53 +76,40 @@ ts.on("debug", (msg) => {
 
 // Lance le serveur tika
 ts.start().then(() => {
-  // liste de mes urls de pdf
-  const listeUrlPdfs = [
-    'http://planete.insa-lyon.fr/scolpeda/f/ects?id=36736&_lang=fr'
-  ]
-  // Pour chaque url ...
-  return Promise.all(listeUrlPdfs.map((url) => {
-    // Extraction du texte.
-    return getPdf(url).then((pdf) => {
-      // console.log("pdf", pdf);
-      return ts.queryText(pdf).then((data) => {
-        // console.log(data)
-        let code = /CODE : ([^\n]*)/.exec(data)[1];
-        // console.log("Code :", code);
-      });
-    })
-  }))
+  return getAllPdfUrl().then((listeUrlPdfs) => {
+    // Pour chaque url ...
+    return listeUrlPdfs.reduce((p, url) => {
+      // Le reduce sert ici à éviter de faire toutes les requetes en même temps.
+      // Il y a plus de 3000 pdfs...
+      return p.then(() => {
+        // Extraction du texte.
+        // On vérifie qu'il y a bien une url
+        if (url) {
+          return getPdf(url).then((pdf) => {
+            // console.log("pdf", pdf);
+            if (pdf) {
+              // Et qu'il y a bien un pdf.
+              return ts.queryText(pdf).then((data) => {
+                // console.log(data)
+                const code = /CODE : ([^\n]*)/.exec(data)[1];
+                console.log("code :", code);
+                db[code] = true;
+              });
+            }
+          })
+        }
+      })
+    }, Promise.resolve()) // Initilise le reduce avec une promesse
+  })
 }).then(() => {
   return ts.stop()
 }).catch((err) => {
-  console.log(`TIKA ERROR: ${err}`)
+  console.log(`TIKA ERROR: ${err}`, err)
+  return ts.stop()
+}).then(() => {
+  console.log(JSON.stringify(db, null, 2));
 })
 
-// Analyser du html
-// DOc : https://github.com/cheeriojs/cheerio
-// ou encore : https://github.com/sfrenot/competence/blob/master/formation/crawl.coffee
-const extractUrlPdfs = (url) => {
-  return getHtml(url).then((html) => {
-    const $ = cheerio.load(html);
-    const urls = $('#block-system-main .content-offre-formations table a').map(function() {
-      return $(this).attr('href');
-    }).get()
-    // console.log("urls:", urls);
-    return urls;
-  })
-}
-
-extractUrlPdfs('https://www.insa-lyon.fr/fr/formation/parcours/729/4/1') // .then(console.log)
-
-// Créer une base de données
-const db = {}
-
-// Écrire dans la base de données
-
-db["code"] = {
-  a: 1,
-  b: 2
-}
-
-// Afficher le contenu d'une variable en json
-console.log(JSON.stringify(db, null, 2));
+// Version simple.
+// Il peut être bon de loguer les pages manquantes
+// pour les rapporter aux responsables.
