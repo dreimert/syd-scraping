@@ -58,7 +58,7 @@ L'objectif est d'extraire du site et des pdfs les informations de chaque cours e
 
 Cloner ce dépot :
 
-    git clone https://github.com/dreimert/asy-td5.git
+    git clone https://github.com/dreimert/syd-scraping.git
 
 Installation des dépendances :
 
