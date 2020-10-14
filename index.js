@@ -4,27 +4,37 @@ const cheerio = require('cheerio');
 
 // Télécharger une page HTML
 const getHtml = (url) => {
-  return rp(url)
-  .then(function (htmlString) {
-    // console.log(htmlString);
-    return htmlString;
-  })
-  .catch(function (err) {
-    console.error("RP ERROR:", err)
-  });
+  if(url) {
+    return rp(url)
+    .then(function (htmlString) {
+      // console.log(htmlString);
+      return htmlString;
+    })
+    .catch(function (err) {
+      console.error("getHtml :: RP ERROR:", err)
+    });
+  } else {
+    console.error("getHtml :: url undefined")
+    return
+  }
 }
 
 // Télécharger un pdf
 const getPdf = (url) => {
-  return rp({
-    url: url,
-    encoding: null
-  }).then(function (pdf) {
-    // console.log("PDF download");
-    return pdf;
-  }).catch(function (err) {
-    console.error("RP ERROR:", err)
-  });
+  if(url) {
+    return rp({
+      url: url,
+      encoding: null
+    }).then(function (pdf) {
+      // console.log("PDF download");
+      return pdf;
+    }).catch(function (err) {
+      console.error("getPdf :: RP ERROR:", err)
+    });
+  } else {
+    console.error("getPdf :: url undefined")
+    return
+  }
 }
 
 // Lance le serveur Tika
@@ -46,11 +56,13 @@ ts.start().then(() => {
     // Extraction du texte.
     return getPdf(url).then((pdf) => {
       // console.log("pdf", pdf);
-      return ts.queryText(pdf).then((data) => {
-        // console.log(data)
-        let code = /CODE : ([^\n]*)/.exec(data)[1];
-        // console.log("Code :", code);
-      });
+      if(pdf) {
+        return ts.queryText(pdf).then((data) => {
+          // console.log(data)
+          let code = /CODE : ([^\n]*)/.exec(data)[1];
+          // console.log("Code :", code);
+        });
+      }
     })
   }))
 }).then(() => {
