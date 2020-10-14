@@ -15,7 +15,7 @@ const getHtml = (url) => {
     });
   } else {
     console.error("getHtml :: url undefined")
-    return
+    return Promise.resolve(undefined);
   }
 }
 
@@ -29,11 +29,11 @@ const getPdf = (url) => {
       // console.log("PDF download");
       return pdf;
     }).catch(function (err) {
-      console.error("getPdf :: RP ERROR:", err)
+      console.error("getPdf :: RP ERROR:", err);
     });
   } else {
-    console.error("getPdf :: url undefined")
-    return
+    console.error("getPdf :: url undefined");
+    return Promise.resolve(undefined);
   }
 }
 
