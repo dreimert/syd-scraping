@@ -90,3 +90,5 @@ Le scraping permet d'extraire des données même sans accès à la base de donn�
 ## Pour aller plus loin
 
 Extraire plus d'informations comme les pré-requis, les compétences listées... Quelques exemples : https://github.com/sfrenot/competence.
+
+Application en conditions réelles avec des millions d'utilisateurs pour le Covid : https://www.youtube.com/watch?v=_UND6IOeIrM.
