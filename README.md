@@ -61,7 +61,7 @@ L'objectif est d'extraire du site et des pdfs les informations de chaque cours e
 Cloner ce dépot :
 
     git clone https://github.com/dreimert/syd-scraping.git
-    
+
 Ce déplacer dans le dossier:
 
     cd syd-scraping
@@ -69,6 +69,10 @@ Ce déplacer dans le dossier:
 Installation des dépendances :
 
     npm install
+
+Lancer le code :
+
+    node index.js
 
 ### Tika
 
