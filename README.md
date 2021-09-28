@@ -4,6 +4,8 @@ TD de scraping du cours de systèmes distribués.
 
 L'objectif de ce TD est de manipuler des données comme "dans la vrai vie", en m'inspirant de situations réellement rencontrées dans mon travail. On va voir aussi l'architecture que l'on peut mettre en place pour cela.
 
+*< À lire avec la voix d'introduction du Commité des reprises (https://www.youtube.com/user/ComiteDesReprises) >*
+
 Le ministère de l'enseignement supérieur et de la recherche a lancé *le chantier compétences* pour permettre une meilleure lecture de l'offre de formation et pour mieux qualifier les compétences des étudiants. Mais cela demande du temps aux enseignants, enseignant-chercheurs et l'administration des établissements d'enseignement supérieur.
 
 Mais l'INSA possède une cellule secrète qui agit dans ce genre de cas et vous en faites parti ! Vous devez agir.
@@ -59,6 +61,10 @@ L'objectif est d'extraire du site et des pdfs les informations de chaque cours e
 Cloner ce dépot :
 
     git clone https://github.com/dreimert/syd-scraping.git
+    
+Ce déplacer dans le dossier:
+
+    cd syd-scraping
 
 Installation des dépendances :
 
