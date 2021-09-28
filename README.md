@@ -4,7 +4,7 @@ TD de scraping du cours de systèmes distribués.
 
 L'objectif de ce TD est de manipuler des données comme "dans la vrai vie", en m'inspirant de situations réellement rencontrées dans mon travail. On va voir aussi l'architecture que l'on peut mettre en place pour cela.
 
-*< À lire avec la voix d'introduction du Commité des reprises (https://www.youtube.com/user/ComiteDesReprises) >*
+*< À lire avec la voix d'introduction du Comité des reprises (https://www.youtube.com/user/ComiteDesReprises) >*
 
 Le ministère de l'enseignement supérieur et de la recherche a lancé *le chantier compétences* pour permettre une meilleure lecture de l'offre de formation et pour mieux qualifier les compétences des étudiants. Mais cela demande du temps aux enseignants, enseignant-chercheurs et l'administration des établissements d'enseignement supérieur.
 
