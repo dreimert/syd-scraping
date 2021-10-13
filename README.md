@@ -35,7 +35,7 @@ Télécharger les binaires et les décompresser :
 
 Mettre à jour votre PATH :
 
-    echo "export PATH=$PATH:$(pwd)/node-v12.11.1-linux-x64/bin/" >> ~/.bashrc
+    echo "export PATH=$(pwd)/node-v12.11.1-linux-x64/bin/:$PATH" >> ~/.bashrc
 
 Recharger vos variables d'environnement :
 
