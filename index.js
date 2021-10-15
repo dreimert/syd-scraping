@@ -94,6 +94,7 @@ const downloadAndAnalysePdf = (urls = ['http://planete.insa-lyon.fr/scolpeda/f/e
     return ts.stop().then(() => db)
   }).catch((err) => {
     console.log(`TIKA ERROR: ${err}`)
+    return db;
   })
 }
 
