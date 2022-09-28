@@ -30,12 +30,12 @@ Vous pouvez télécharger Node.js ici : https://nodejs.org/en/download/current/.
 
 Télécharger les binaires et les décompresser :
 
-    wget https://nodejs.org/dist/v12.11.1/node-v12.11.1-linux-x64.tar.xz
-    tar -xJvf node-v12.11.1-linux-x64.tar.xz
+    wget https://nodejs.org/dist/v16.17.1/node-v16.17.1-linux-x64.tar.xz
+    tar -xJvf node-v16.17.1-linux-x64.tar.xz
 
 Mettre à jour votre PATH :
 
-    echo "export PATH=$(pwd)/node-v12.11.1-linux-x64/bin/:$PATH" >> ~/.bashrc
+    echo "export PATH=$(pwd)/node-v16.17.1-linux-x64/bin/:$PATH" >> ~/.bashrc
 
 Recharger vos variables d'environnement :
 
