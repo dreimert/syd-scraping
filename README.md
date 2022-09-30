@@ -85,7 +85,7 @@ Vos yeux. Regardez si les données stockées correspondent à ce qui est indiqu�
 ## Par où commencer ?
 
 * Il y a des exemples de code dans `index.js`.
-* Commencez par télécharger un pdf en mémoire.
+* Commencez par télécharger un pdf. "Où" est le pdf après le téléchargement ?
 * Transformez ce pdf en texte via Tika.
 * Analysez le texte pour en extraire les informations voulues. Les [RegExp](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/RegExp) sont votre amie.
     * `/CODE : ([^\n]*)/` : extrait le code du cours.
