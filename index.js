@@ -1,6 +1,9 @@
-const TikaServer = require('tika-server')
+const fs = require('fs')
+const path = require('path')
 const rp = require('request-promise')
 const cheerio = require('cheerio')
+
+const directory = './site'
 
 // le mot clef 'await' permet d'attendre la fin d'une opération asynchrone
 
@@ -30,61 +33,24 @@ async function getPdf (url) {
   }
 }
 
-async function downloadAndAnalysePdf (urls, db = {}) {
-  try {
-    // Lance le serveur Tika
-    // Doc : https://www.npmjs.com/package/tika-server
-    const ts = new TikaServer()
+async function write (path, name, content) {
+  path = `${directory}/${path.replace('https://www.insa-lyon.fr/', '')}`
 
-    ts.on('debug', (msg) => {
-      // Si vous voulez voir ce qui se passe dans le serveur Tika
-      // console.log(`DEBUG: ${msg}`)
-    })
+  console.log('path:', path)
 
-    // Lance le serveur tika et attend qu'il soit prêt
-    await ts.start()
+  if (!fs.existsSync(path)){
+    fs.mkdirSync(path, { recursive: true });
+  }
 
-    // Crée une base de données avec assoication test = 42. Mettre {} pour initiliser la db comme une DB vide.
-
-    for (let url of urls) {
-      const pdf = await getPdf(url)
-
-      // console.log('pdf', pdf)
-      if (pdf) {
-        const data = await ts.queryText(pdf)
-        // console.log(data)
-
-        const code = /CODE : ([^\n]*)/.exec(data)?.[1]
-        const ects = /ECTS : ([^\n]*)/.exec(data)?.[1]
-        const cours = /Cours : ([^\n]*) h/.exec(data)?.[1]
-        const td = /TD : ([^\n]*) h/.exec(data)?.[1]
-        const tp = /TP : ([^\n]*) h/.exec(data)?.[1]
-        const projet = /Projet : ([^\n]*) h/.exec(data)?.[1]
-        const pedagogique = /pédagogique : ([^\n]*) h/.exec(data)?.[1]
-        const personnel = /Travail personnel : ([^\n]*) h/.exec(data)?.[1]
-        const extraction = /CONTACT\n\n([^\n]*)\n([^\n]*)/.exec(data)
-
-        db[code] = {
-          code: code,
-          ects: ects,
-          cours: cours,
-          td: td,
-          tp: tp,
-          projet: projet,
-          pedagogique: pedagogique,
-          personnel: personnel,
-          prof: extraction?.[1],
-          email: extraction?.[2]
-        }
-      }
+  console.log('write:', `${path}/${name}`)
+  if (content) {
+    try {
+      return await fs.writeFileSync(`${path}/${name}`, content, { flag: 'w'})
+    } catch (error) {
+      console.error('writeHtml :: FS ERROR:', error)
     }
-
-    // Arrete le serveur tika
-    await ts.stop()
-
-    return db
-  } catch (error) {
-    console.error(`downloadAndAnalysePdf :: ERROR: ${error}`)
+  } else {
+    console.error('writeHtml :: content undefined')
   }
 }
 
@@ -93,6 +59,7 @@ async function downloadAndAnalysePdf (urls, db = {}) {
 // ou encore : https://github.com/sfrenot/competence/blob/master/formation/crawl.coffee
 async function extractUrlPdfs (url) {
   const html = await getHtml(url)
+  await write(url, 'index.html', html)
   const $ = cheerio.load(html)
   const urls = $('#block-system-main .content-offre-formations table a').map(function () {
     return $(this).attr('href')
@@ -103,6 +70,7 @@ async function extractUrlPdfs (url) {
 
 async function extractUrlFormations (url = 'https://www.insa-lyon.fr/fr/formation/diplomes/ING') {
   const html = await getHtml(url)
+  await write('', 'index.html', html)
   const $ = cheerio.load(html)
   const urls = $('.diplome table tr td:nth-child(2) a').map(function () {
     return $(this).attr('href')
@@ -122,7 +90,12 @@ async function run () {
 
     const urls = await extractUrlPdfs(`https://www.insa-lyon.fr${formation}`)
 
-    await downloadAndAnalysePdf(urls, db)
+    for (let url of urls) {
+      console.log('url', url);
+      const pdf = await getPdf(url)
+      const [path, params] = url.split('?')
+      await write(path.replace('https://planete.insa-lyon.fr/scolpeda/', ''), params.split('&')[0].split('=')[1], pdf)
+    }
   }
 
   console.log(JSON.stringify(db, null, 2))
