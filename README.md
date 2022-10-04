@@ -85,13 +85,13 @@ Vos yeux. Regardez si les données stockées correspondent à ce qui est indiqu�
 ## Par où commencer ?
 
 * Il y a des exemples de code dans `index.js`.
-* Commencez par télécharger un pdf. "Où" est le pdf après le téléchargement ?
-* Transformez ce pdf en texte via Tika.
+* Commencez par identifier comment télécharger un pdf. "Où" est le pdf après le téléchargement ?
+* Comment transformez ce pdf en texte via Tika.
 * Analysez le texte pour en extraire les informations voulues. Les [RegExp](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/RegExp) sont votre amie.
     * `/CODE : ([^\n]*)/` : extrait le code du cours.
-* Télécharger et analyser une page de formation.
-* Extraire toutes les UEs d'une formation.
-* Extraire toutes les UEs de l'INSA.
+* Comment télécharger et analyser une page de formation.
+* Comment extraire toutes les formations de l'INSA.
+* Extraire et analyser tous les pdfs de l'INSA.
 
 ## Ce que je dois retenir
 
