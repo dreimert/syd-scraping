@@ -28,6 +28,8 @@ Vous pouvez télécharger Node.js ici : https://nodejs.org/en/download/current/.
 
 ### Dans le cas des salles machines de TC
 
+Attention ! Vous devez faire cette manipulation dans un répertoire non virtuel. Par exemple dans votre home. Si vous le faite dans HOME_INSA ou sur le bureau, ça ne fonctionnera pas.
+
 Télécharger les binaires et les décompresser :
 
     wget https://nodejs.org/dist/v16.17.1/node-v16.17.1-linux-x64.tar.xz
