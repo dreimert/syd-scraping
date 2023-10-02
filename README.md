@@ -32,12 +32,12 @@ Attention ! Vous devez faire cette manipulation dans un répertoire non virtuel.
 
 Télécharger les binaires et les décompresser :
 
-    wget https://nodejs.org/dist/v16.17.1/node-v16.17.1-linux-x64.tar.xz
-    tar -xJvf node-v16.17.1-linux-x64.tar.xz
+    wget https://nodejs.org/dist/v20.8.0/node-v20.8.0-linux-x64.tar.xz
+    tar -xJvf node-v20.8.0-linux-x64.tar.xz
 
 Mettre à jour votre PATH :
 
-    echo "export PATH=$(pwd)/node-v16.17.1-linux-x64/bin/:$PATH" >> ~/.bashrc
+    echo "export PATH=$(pwd)/node-v20.8.0-linux-x64/bin/:$PATH" >> ~/.bashrc
 
 Recharger vos variables d'environnement :
 
