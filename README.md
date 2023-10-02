@@ -12,7 +12,7 @@ Mais l'INSA possède une cellule secrète qui agit dans ce genre de cas et vous 
 
 ## Prérequis
 
-Je pars du principe que vous savez coder en Javascript et utiliser git et github. Si ce n'est pas le cas, je vous invite pour le prochain TD à lire :
+Je pars du principe que vous savez coder en Javascript et utiliser git et github. Si ce n'est pas le cas, je vous invite pour le prochain TD à lire :
 
 * Javascript :
   * https://eloquentjavascript.net/ (troisième édition en anglais)
@@ -89,7 +89,7 @@ Vos yeux. Regardez si les données stockées correspondent à ce qui est indiqu�
 * Il y a des exemples de code dans `index.js`.
 * Commencez par identifier comment télécharger un pdf. "Où" est le pdf après le téléchargement ?
 * Comment transformez ce pdf en texte via Tika.
-* Analysez le texte pour en extraire les informations voulues. Les [RegExp](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/RegExp) sont votre amie.
+* Analysez le texte pour en extraire les informations voulues. Les [RegExp](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/RegExp) sont votre amie et [regex101](https://regex101.com/) aussi.
     * `/CODE : ([^\n]*)/` : extrait le code du cours.
 * Comment télécharger et analyser une page de formation.
 * Comment extraire toutes les formations de l'INSA.
@@ -97,7 +97,13 @@ Vos yeux. Regardez si les données stockées correspondent à ce qui est indiqu�
 
 ## Ce que je dois retenir
 
-Le scraping permet d'extraire des données même sans accès à la base de données. Avec les bonnes technologies de traitement, il est possible de faire en quelques minutes ce qu'un humain mettrait des heures ou jours à faire.
+Le scraping permet d'extraire des données même sans accès à la base de données. Avec les bonnes technologies de traitement, il est possible de faire en quelques minutes ce qu'un humain mettrait des heures, des jours ou des semaines à faire.
+
+Mais il faut faire attention au cadre légal. Avez-vous le droit de le faire au yeux de la loi ? Est-ce que le service l'authorise ? Pour quel usage ? Pensez à rapeller à l'intervenant d'en parler à la fin du TD s'il oublie. Lui, il n'oublira pas de vous poser des questions dessus à la prochaine séance ;)
+
+## Évaluation
+
+Toutes questions par rapport au scrapping, son cadre légal ou les expressions régulières. Pour les expressions régulières incluant les groupes de captures, les quantificateurs et ce qui est utile à ce TD.
 
 ## Pour aller plus loin
 
