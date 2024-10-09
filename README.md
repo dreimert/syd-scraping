@@ -89,7 +89,7 @@ Vos yeux. Regardez si les données stockées correspondent à ce qui est indiqu�
 * Il y a des exemples de code dans `index.js`.
 * Commencez par identifier comment télécharger un pdf. "Où" est le pdf après le téléchargement ?
 * Comment transformez ce pdf en texte via Tika.
-* Analysez le texte pour en extraire les informations voulues. Les [RegExp](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/RegExp) sont votre amie et [regex101](https://regex101.com/) aussi.
+* Analysez le texte pour en extraire les informations voulues (Cf. Protocole au dessus). Les [RegExp](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/RegExp) sont votre amie et [regex101](https://regex101.com/) aussi.
     * `/CODE : ([^\n]*)/` : extrait le code du cours.
 * Comment télécharger et analyser une page de formation.
 * Comment extraire toutes les formations de l'INSA.
