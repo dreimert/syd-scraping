@@ -110,3 +110,5 @@ Toutes questions par rapport au scrapping, son cadre légal ou les expressions r
 Extraire plus d'informations comme les pré-requis, les compétences listées... Quelques exemples : https://github.com/sfrenot/competence.
 
 Application en conditions réelles avec des millions d'utilisateurs pour le Covid : https://www.youtube.com/watch?v=_UND6IOeIrM.
+
+Vidéo explicative de V2F : https://www.youtube.com/watch?v=O3cJUR2NimI
