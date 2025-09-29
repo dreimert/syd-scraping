@@ -32,12 +32,12 @@ Attention ! Vous devez faire cette manipulation dans un répertoire non virtuel.
 
 Télécharger les binaires et les décompresser :
 
-    wget https://nodejs.org/dist/v20.8.0/node-v20.8.0-linux-x64.tar.xz
-    tar -xJvf node-v20.8.0-linux-x64.tar.xz
+    wget https://nodejs.org/dist/v20.19.5/node-v20.19.5-linux-x64.tar.xz
+    tar -xJvf node-v20.19.5-linux-x64.tar.xz
 
 Mettre à jour votre PATH :
 
-    echo "export PATH=$(pwd)/node-v20.8.0-linux-x64/bin/:$PATH" >> ~/.bashrc
+    echo "export PATH=$(pwd)/node-v20.19.5-linux-x64/bin/:$PATH" >> ~/.bashrc
 
 Recharger vos variables d'environnement :
 
@@ -76,10 +76,6 @@ Lancer le code :
 
     node index.js
 
-### Tika
-
-Tika est une solution qui permet, entre autre, de convertir un pdf en texte.
-
 ## Test
 
 Vos yeux. Regardez si les données stockées correspondent à ce qui est indiqué dans le pdf.
@@ -88,12 +84,16 @@ Vos yeux. Regardez si les données stockées correspondent à ce qui est indiqu�
 
 * Il y a des exemples de code dans `index.js`.
 * Commencez par identifier comment télécharger un pdf. "Où" est le pdf après le téléchargement ?
-* Comment transformez ce pdf en texte via Tika.
+* Comment transformez ce pdf en texte.
 * Analysez le texte pour en extraire les informations voulues (Cf. Protocole au dessus). Les [RegExp](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/RegExp) sont votre amie et [regex101](https://regex101.com/) aussi.
-    * `/CODE : ([^\n]*)/` : extrait le code du cours.
+    * `/CODE :\n([^\n]*)/` : extrait le code du cours.
 * Comment télécharger et analyser une page de formation.
 * Comment extraire toutes les formations de l'INSA.
 * Extraire et analyser tous les pdfs de l'INSA.
+
+## Points d'attention
+
+Si vous êtes trop agressif avec les serveurs de l'INSA, vous serez bannis temporairement.
 
 ## Ce que je dois retenir
 
