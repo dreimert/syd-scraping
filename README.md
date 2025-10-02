@@ -54,7 +54,7 @@ L'INSA a déjà un catalogue de formations que l'on peut trouver à l'adresse ht
 L'objectif est d'extraire du site et des pdfs les informations de chaque cours et de constituer une base de données. Dans cette base, on aimerait :
 
 * Le code. Exemple : TC-4-I-ASY.
-* Le nombre d'ETCS.
+* Le nombre d'ECTS.
 * Le volume horaire de cours / TD / TP / Project / Travail personnel.
 * Plus tard, le contact et son mail
 
