@@ -93,7 +93,7 @@ Vos yeux. Regardez si les données stockées correspondent à ce qui est indiqu�
 
 ## Points d'attention
 
-Si vous êtes trop agressif avec les serveurs de l'INSA, vous serez bannis temporairement.
+Si vous êtes trop agressif avec les serveurs de l'INSA, vous serez bannis temporairement. Vous avez la fonction `sleep` dans `index.js`.
 
 ## Ce que je dois retenir
 
