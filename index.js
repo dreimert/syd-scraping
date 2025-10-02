@@ -4,6 +4,17 @@ import * as cheerio from 'cheerio'
 // le mot clef 'await' permet d'attendre la fin d'une opération asynchrone
 
 /**
+ * Permet d'attendre duration ms
+ * @param {number} duration - Durée en millisecondes
+ * @returns {Promise<void>} Promise qui se résout après la durée spécifiée
+ */
+function sleep (duration) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, duration)
+  })
+}
+
+/**
  * Télécharger une page HTML
  * @param {string} url - L'URL de la page HTML à télécharger
  * @returns {Promise<string|undefined>} Le contenu HTML de la page, ou undefined en cas d'erreur
