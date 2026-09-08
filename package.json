@@ -1,25 +1,30 @@
 {
   "name": "syd-scraping",
   "version": "1.0.0",
-  "description": "TD de Scrapping du cours SYD de l'INSA Lyon",
+  "description": "TD de Scraping du cours SYD de l'INSA Lyon",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "test": "node --test",
+    "start": "node index.js",
+    "serve": "node serve.js",
+    "backup": "node backup.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dreimert/syd-scraping.git"
   },
   "author": "Damien Reimert",
-  "license": "MIT",
+  "license": "CC-BY-NC-4.0",
   "bugs": {
     "url": "https://github.com/dreimert/syd-scraping/issues"
   },
   "homepage": "https://github.com/dreimert/syd-scraping#readme",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.2",
-    "request-promise": "^4.2.2",
-    "tika-server": "^1.1.0"
+    "cheerio": "^1.1.2",
+    "unpdf": "^1.8.1"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }
