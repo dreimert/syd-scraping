@@ -1,12 +1,14 @@
 {
   "name": "syd-scraping",
   "version": "1.0.0",
-  "description": "TD de Scrapping du cours SYD de l'INSA Lyon",
+  "description": "TD de Scraping du cours SYD de l'INSA Lyon",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "test": "node --test",
+    "start": "node index.js",
+    "backup": "node backup.js",
+    "serve": "node serve.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,9 @@
   "homepage": "https://github.com/dreimert/syd-scraping#readme",
   "dependencies": {
     "cheerio": "^1.1.2",
-    "pdf-parse": "https://github.com/dreimert/pdf-parse.git"
+    "unpdf": "^1.8.1"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }
