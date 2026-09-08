@@ -279,3 +279,7 @@ Extraire plus d'informations comme les pré-requis, les compétences listées...
 Application en conditions réelles avec des millions d'utilisateurs pour le Covid : https://www.youtube.com/watch?v=_UND6IOeIrM.
 
 Vidéo explicative de V2F : https://www.youtube.com/watch?v=O3cJUR2NimI
+
+## Licence
+
+Ce TD est mis à disposition sous licence [Creative Commons Attribution - Pas d'Utilisation Commerciale 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/deed.fr) (CC BY-NC 4.0). Vous pouvez le reprendre, le modifier et le rediffuser, y compris dans un autre établissement, à condition de citer l'auteur et de ne pas en faire un usage commercial.
