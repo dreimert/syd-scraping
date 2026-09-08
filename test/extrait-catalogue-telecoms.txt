@@ -1,0 +1,202 @@
+Domaine Scientifique de la DOUA
+20, Avenue Albert Einstein - 69100 Villeurbanne
+Probabilités et Statistiques 1 / Probabilities and Statistics 1
+PBS1
+IDENTIFICATION
+CODE : TC-3-S1-EC-PBS
+ECTS : 1
+HORAIRES
+Cours : 4h
+TD : 16h
+TP : 0h
+Projet : 0h
+Evaluation : 0h
+Face à face pédagogique : 20h
+Travail personnel : 4h
+Total : 24h
+EVALUATION
+- 50 mn : QCM Moodle à mi-
+parcours
+- 1h00 Examen final
+SUPPORTS
+PEDAGOGIQUES
+poly de cours, poly de TD
+LANGUE
+D'ENSEIGNEMENT
+Français
+CONTACT
+M. NOM Prenom :
+prenom.nom@insa-lyon.fr
+OBJECTIFS
+Cet EC relève de l'unité d'enseignement (TC-3-S1-SYS) et contribue aux compétences
+suivantes :
+A2 Exploiter un modèle d'un système réel ou virtuel (niveau 3)
+Capacité : Modéliser une expérience aléatoire : univers, évènement, variables aléatoire,
+signal aléatoire
+Capacité : Exploiter la modélisation statistique d'un problème pour le résoudre en
+calculant une probablité, une espérance, la dsp d'un signal aléatoire, etc
+Connaissance : Série statistique. Fréquence d'apparition. Loi empirique de convergence
+Connaissance : Notion de probabilité (axiomatique). Univers, expérience, évènement.
+Prob. élémentaires et conditionnelles, indépendance.
+Connaissance : Principales lois de probabilité des variables aléatoires discrètes et
+continues. Espérance, variance, fonction d'une variable aléatoire.
+Connaissance : Connaissance : Couples de variables aléatoaléatoiresires : loi conjointe,
+lois marginales, conditionnelles. Covariance, cœf de corrélation. Fonction d'un couple de
+variables
+Connaissance : Loi des grands nombres, Théorème central limite
+Connaissance : Processus stochastique, stationnarité et ergodisme
+PROGRAMME
+1) Lien entre statistiques et probabilités
+2) Probabilités
+3) Variables aléatoires
+4) Couples de variables aléatoires
+5) Loi des grands nombres et théorème central limite
+6) Processus stochastiques
+BIBLIOGRAPHIE
+1. Probabilité pour scientifiques et ingénieurs, Patrick Bogaert, De Boeck supérieur, 2005
+2. Modélisation probabiliste pour l'ingénieur, André Smolarz, Ellipses, 2009
+3. Théorie et traitement des signaux, Fréderic de Coulon, Presses Polytechniques et
+Universitaires Romandes, 2013
+4. Introduction aux probabilités, Jean-Pierre Delmas, Ellipses, 2000.
+PRÉ-REQUIS
+Maths premier cycle
+Domaine Scientifique de la DOUA
+20, Avenue Albert Einstein - 69100 Villeurbanne
+Signaux et Systèmes / Signals and Systems
+SIS
+IDENTIFICATION
+CODE : TC-3-S1-EC-SIS
+ECTS : 2
+HORAIRES
+Cours : 0h
+TD : 32h
+TP : 0h
+Projet : 0h
+Evaluation : 2h
+Face à face pédagogique : 34h
+Travail personnel : 0h
+Total : 34h
+EVALUATION
+- 10 min QCM Moodle à mi-
+parcours (sans document)
+- 10 min QCM Moodle en fin
+parcours (sans document)
+- 2h00 Examen final
+SUPPORTS
+PEDAGOGIQUES
+LANGUE
+D'ENSEIGNEMENT
+Français
+CONTACT
+M. NOM Prenom :
+prenom.nom@insa-lyon.fr
+M. NOM Prenom :
+prenom.nom@insa-lyon.fr
+OBJECTIFS
+Cet EC relève de l'unité d'enseignement (TC-3-S1-UE-SYS) et contribue aux
+compétences suivantes :
+C1 Spécifier, concevoir et modéliser des systèmes de transmission et de traitement des
+signaux/images/données (niveau 2)
+Capacité : Caractériser en temps et en fréquence un « signal déterministe »
+Capacité : Caractériser en temps et en fréquence un « Système Linéaire
+Temporellement Invariant (SLTI)»
+Capacité : Choisir la représentation la plus adaptée au signal à étudier et analyser ce
+signal en temps et en fréquence
+Capacité : Calculer la sortie d'un SLTI par l'opération de convolution
+Capacité : Déterminer la sortie d'un système régi par une équation différentielle à
+cœfficients constants, initialement au repos ou non
+Capacité : Déterminer la sortie d'un système régi par une équation aux différences à
+cœfficients constants, initialement au repos ou non
+Capacité : Calculer la sortie d'un SLTI à l'aide des Transformées (Fourier, Laplace, Z)
+Capacité : Echantillonner un signal
+Connaissance : Représentation des signaux déterministes
+Connaissance : Signaux particuliers: Dirac, Peigne de Dirac, échelon, sinusoïde,
+exponentielle complexe
+Connaissance : Transformation de la variable changement d'échelle, inversion
+temporelle
+Connaissance : Corrélation entre les signaux, autocorrélation, intercorrélation
+Connaissance : Stabilité, causalité, invariance temporelle
+Connaissance : Réponse impulsionnelle, réponse indicielle
+Connaissance : Opération de convolution
+Connaissance : Séries de Fourier,
+Connaissance : Transformée de Fourier: en temps continu et en temps discret, DFT.
+Connaissance : Transformée de Laplace, Transformée en Z.
+Connaissance : Réponse fréquentielle, diagramme de Bode, densité spectrale
+Connaissance : Fonction de transfert
+Connaissance : Filtres de 1er ordre et 2nd ordre
+Connaissance : Filtrage adapté
+Connaissance : Théorème de l'échantillonnage
+Connaissance : Signal déterministe, Système Linéaire Temporellement Invariant (SLTI),
+analyse temporelle et fréquentielle, Transformées, Echantillonnage
+C5 Mettre en œuvre, réaliser, développer, déployer des systèmes de transmission et de
+traitement des signaux/images/données (niveau 1)
+Capacité : Détecter un signal par filtrage adapté
+Capacité : Filtrer un signal
+Connaissance : Corrélation entre les signaux, autocorrélation, intercorrélation
+Connaissance : Opération de convolution
+Connaissance : Filtres de 1er ordre et 2nd ordre
+Connaissance : Filtrage adapté
+Connaissance : Filtrage, Matlab, FDATool
+De plus, elle nécessite de mobiliser les compétences suivantes :
+A4 Concevoir un système répondant à un cahier des charges
+A2 Exploiter un modèle d'un système réel ou virtuel
+A6 Communiquer une analyse ou une démarche scientifique avec des mises en situation
+adaptées à leur spécialité
+B1 Se connaître, se gérer physiquement et mentalement
+B2 Travailler, apprendre, évoluer de manière autonome
+PROGRAMME
+1- Chaine de traitement numérique
+* Qu'est ce qu'un signal ?
+* Qu'est ce qu'un système ?
+* Qu'est ce qu'une chaine de traitement numérique
+* Convertisseur Analogique Numérique / Numérique Analogique
+* Filtre anti-repliement / Filtre de reconstruction
+* Signaux déterministes / Signaux aléatoires
+* Différentes représentations d'un signal
+2- Etude temporelle des signaux
+* Caractéristiques temporelles
+* Signaux "stars" : impulsion, échelon, exponentielle complexe, rectangle
+* Modélisation de l'échantillonnage
+* Inter / auto corrélation
+3- Analyse fréquentielle en temps continu
+* Décomposition en série de Fourier
+* Transformée de Fourier des signaux continus
+4- Propriétés de la Transformée de Fourier
+* Propriétés fondamentales
+* Théorème de Shannon
+* Application : Filtrage fréquentiel
+* Application : Modulation d'Amplitude
+5- Transformée de Fourier Temps discret et transformée de Fourier discrète
+* Définition et propriétés
+6 - Réponse temporelle d'un système temporellement invariant (SLTI)
+* Réponse impulsionnelle
+* SLTI et convolution
+* SLTI et équations différentielles
+* Convolution en temps discret et transformée de Fourier discrète
+7- Réponse fréquentielle d'un SLTI
+* Réponse impulsionnelle et réponse fréquentielle
+* Systèmes du 1er et du 2ème ordre
+* Systèmes récursifs ou non récursifs : filtres IIR / IIR
+8- Transformée en Z
+* Définitions et propriétés
+* Etude des systèmes temps discrets
+* SLTI, équations aux différences, schémas blocs
+BIBLIOGRAPHIE
+[1] Alan V. Oppenheim, Alan S. Willsky , S. Hamid, Signals and Systems, Pearson;
+ISBN-10: 0136511759,ISBN-13: 978-0136511755, 2eme edition, 957 pages, 1 juillet
+1996.
+[2] Alan V. Oppenheim, Ronald T. Schafer, Ronald W. Schafer, Wayne T. Padgett ,
+Discrete-Time Signal Processing, Prentice Hall, ISBN 0131988425, 1108 p., 2009.
+[3] Bernard Mulgrew, Peter M. Grant, John Thompson, John Thompson, Digital Signal
+Processing: concepts and applications, Palgrave Macmillan, ISBN 0333963563, 380
+page, 2003.
+[4] Samuel D. Stearns, Digital Signal Processing with examples in Matlab, Taylor &
+Francis Ltd, Electrical Engineering & Applied Signal Processing Series (Book 9), 516
+pages, CRC Press; 2 edition (April 4, 2011).
+[5] John G Proakis , Masoud Salehi, Gerhard Bauch, Contemporary Communication
+Systems Using MATLAB, ISBN-10: 0495082511 ISBN-13: 978-0495082514, 640 pages,
+Wadsworth Publishing Co Inc; Édition : 3rd Revised ed. (25 octobre 2011).
+PRÉ-REQUIS
+Maths premier cycle
+Domaine Scientifique de la DOUA
+20, Avenue Albert Einstein - 69100 Villeu
