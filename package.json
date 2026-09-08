@@ -7,7 +7,6 @@
   "scripts": {
     "test": "node --test",
     "start": "node index.js",
-    "backup": "node backup.js",
     "serve": "node serve.js"
   },
   "repository": {

@@ -160,25 +160,21 @@ Ce TD utilise [unpdf](https://github.com/unjs/unpdf). La fonction `pdfToText` de
 
 ### Travailler hors ligne
 
-Vous pouvez vous fabriquer une copie locale du site : les 41 pages html et les 31 pdfs de catalogue, tels qu'ils sont en production aujourd'hui. Ça sert à deux choses : travailler sans réseau, et continuer le TD le jour où l'INSA aura de nouveau déplacé quelque chose.
+Si vous n'avez pas de réseau, ou si l'INSA a de nouveau déplacé quelque chose, l'intervenant garde de côté une copie du site : les 41 pages html et les 31 pdfs de catalogue, tels qu'ils étaient en production. Demandez-lui l'archive.
 
-Constituer la copie, une fois, avec du réseau :
+Décompressez-la à la racine du dépôt, vous devez obtenir un dossier `backup/` :
 
-    npm run backup
+    tar xzf backup-AAAA-MM-JJ.tar.gz
 
-Cette commande parle vraiment aux serveurs de l'INSA : une quarantaine de pages et 26 Mo de pdfs, avec une demi-seconde d'attente entre chaque requête. Lancez-la une fois et gardez le résultat — `backup/` n'est pas versionné, justement pour que ces 26 Mo ne soient pas dans le dépôt.
-
-Ensuite, servir la copie dans un premier terminal :
+Servez cette copie dans un premier terminal :
 
     npm run serve
 
-Puis, dans un second, lancer le scraper contre elle :
+Puis, dans un second, lancez le scraper contre elle :
 
     BASE_URL=http://localhost:8000 node index.js
 
 C'est tout : `index.js` lit `BASE_URL` dans l'environnement, et les liens de la copie ont été réécrits pour pointer vers le serveur local. Votre code n'a pas à savoir s'il parle à l'INSA ou à votre disque dur — c'est d'ailleurs une propriété qu'il faut chercher à préserver, elle rend le programme testable.
-
-Si le site de l'INSA est cassé ou inaccessible au moment du TD, `npm run backup` ne vous sauvera pas : demandez l'archive à l'intervenant, qui en garde une de côté.
 
 ## Test
 
