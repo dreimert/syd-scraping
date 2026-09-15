@@ -65,3 +65,6 @@ backup/
 
 # archive de la copie hors-ligne, distribuée hors dépôt
 *.tar.gz
+
+# sortie du corrigé
+db.json

@@ -7,7 +7,9 @@
   "scripts": {
     "test": "node --test",
     "start": "node index.js",
-    "serve": "node serve.js"
+    "serve": "node serve.js",
+    "veille": "node veille.js",
+    "page": "node page.js"
   },
   "repository": {
     "type": "git",

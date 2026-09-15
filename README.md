@@ -1,3 +1,6 @@
+> **Branche `veille`** : observatoire de l'offre de formation, mis à jour chaque nuit.
+> Le sujet du TD est sur `master`. Voir la section « Veille » en bas de ce fichier.
+
 # SYD : Scraping
 
 TD de scraping du cours de systèmes distribués.
@@ -279,3 +282,46 @@ Vidéo explicative de V2F : https://www.youtube.com/watch?v=O3cJUR2NimI
 ## Licence
 
 Ce TD est mis à disposition sous licence [Creative Commons Attribution - Pas d'Utilisation Commerciale 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/deed.fr) (CC BY-NC 4.0). Vous pouvez le reprendre, le modifier et le rediffuser, y compris dans un autre établissement, à condition de citer l'auteur et de ne pas en faire un usage commercial.
+
+## Veille
+
+Cette branche relève chaque nuit l'état de l'offre de formation de l'INSA et consigne ce qui bouge : catalogues qui apparaissent ou disparaissent, pdfs republiés, fiches ajoutées ou retirées, volumes horaires modifiés. Le résultat est une page statique, `index.html`, régénérée à chaque passage.
+
+### Pourquoi
+
+Le sujet du TD raconte qu'il a cassé une fois, sans prévenir et sans bruit. Cette branche est la réponse à la question « comment on l'aurait su ? ». Elle vaut aussi comme démonstration : un scraper n'est pas un programme qu'on lance une fois, c'est un capteur qu'on surveille.
+
+### Comment ça marche
+
+    npm run veille    # relève l'état et calcule les évolutions
+    npm run page      # régénère index.html
+
+Trois fichiers :
+
+* `veille.js` — parcourt le catalogue, les pages de formation et les pdfs, compare au relevé précédent, et écrit `donnees/etat.json` (l'état courant) et `donnees/evolutions.json` (l'historique des changements).
+* `page.js` — transforme cet historique en page html. Aucune dépendance, aucun script côté client.
+* `.github/workflows/veille.yml` — lance le tout à 3h17 UTC et pousse le résultat sur cette branche.
+
+### Deux choix qui comptent
+
+**On ne retélécharge que ce qui a changé.** Le site de l'INSA envoie un `ETag` sur les pdfs ; la veille le conserve et le renvoie en `If-None-Match`. Après le premier passage, une nuit sans changement coûte 30 réponses `304` et zéro octet de pdf, au lieu de 26 Mo. Interroger tous les jours un service qui n'a pas bougé, ça se fait poliment ou ça ne se fait pas.
+
+**Un échec est un évènement, jamais un silence.** Si une page de formation répond mal, la veille le consigne et **reprend l'état précédent** pour cette formation, au lieu d'annoncer une disparition qui n'est qu'une panne. Le nombre d'échecs est affiché sur la page, à côté des autres compteurs.
+
+### Publier la page
+
+Dans les réglages GitHub du dépôt, section *Pages*, choisir la source « Deploy from a branch », branche `veille`, dossier `/ (root)`.
+
+### Ce qui est suivi
+
+| Compteur | Ce qu'il révèle |
+|---|---|
+| Formations | Une filière ouvre ou ferme |
+| Sans catalogue | Un département cesse de publier ses fiches |
+| Catalogues pdf | Un millésime arrive, un ancien est retiré |
+| Fiches d'EC | Le volume réel de l'offre |
+| Face-à-face faux | Fiches où le présentiel ≠ Cours + TD + TP + Évaluation |
+| Totaux faux | Fiches où le total ≠ face-à-face + Projet + Travail personnel |
+| Échecs | Le site, ou la veille, ne va pas bien |
+
+Les deux compteurs d'anomalies ne sont pas là par hasard : au moment de l'amorçage, 25 fiches de génie mécanique et 14 de génie industriel ne s'additionnent pas. Si ces nombres bougent, c'est que quelqu'un a corrigé — ou cassé — quelque chose en amont.
