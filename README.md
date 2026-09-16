@@ -300,7 +300,9 @@ Trois fichiers :
 
 * `veille.js` — parcourt le catalogue, les pages de formation et les pdfs, compare au relevé précédent, et écrit `donnees/etat.json` (l'état courant) et `donnees/evolutions.json` (l'historique des changements).
 * `page.js` — transforme cet historique en page html. Aucune dépendance, aucun script côté client.
-* `.github/workflows/veille.yml` — lance le tout à 3h17 UTC et pousse le résultat sur cette branche.
+* Le workflow qui lance le tout à 3h17 UTC et pousse le résultat ici : `.github/workflows/veille.yml`, **sur la branche `master`**.
+
+Ce dernier point n'est pas un caprice d'organisation : GitHub ne déclenche les workflows planifiés que depuis la branche par défaut. Un `on: schedule` posé sur une branche de travail ne part jamais, et — fidèle au reste de ce TD — il ne prévient pas : pas d'erreur, pas d'exécution en échec, juste rien dans l'onglet Actions. Le workflow vit donc sur `master` et récupère explicitement `veille`.
 
 ### Deux choix qui comptent
 
