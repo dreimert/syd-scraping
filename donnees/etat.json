@@ -1,5 +1,5 @@
 {
-  "date": "2026-09-15T13:32:52.062Z",
+  "date": "2026-09-17T08:40:02.966Z",
   "formations": {
     "/fr/formation/annee-d-echange-l-etranger-ae2": {
       "pdfs": []
@@ -24,7 +24,7 @@
         "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/doc-catalogue-biotechnologie-bioinformatique-2026-2027.pdf"
       ]
     },
-    "/fr/formation/entreprendre-innover-pour-transitions-emprintes": {
+    "/fr/formation/entreprendre-innover-pour-transitionsemprintes": {
       "pdfs": []
     },
     "/fr/formation/expert-en-vehicules-electrifies": {
@@ -124,6 +124,9 @@
         "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalogue-gmppa-2024-2025.pdf",
         "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalogue-gmppa-2025-2026.pdf"
       ]
+    },
+    "/fr/formation/gouvernance-responsabilites-securitequalite-environnement": {
+      "pdfs": []
     },
     "/fr/formation/ifa-informatique-filiere-par-apprentissage": {
       "pdfs": [

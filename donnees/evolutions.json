@@ -1,5 +1,32 @@
 [
   {
+    "date": "2026-09-17T08:40:02.966Z",
+    "resume": {
+      "formations": 41,
+      "sansCatalogue": 20,
+      "pdfs": 30,
+      "fiches": 1219,
+      "anomaliesFaceAFace": 25,
+      "anomaliesTotal": 14,
+      "retelecharges": 0,
+      "echecs": 0
+    },
+    "evenements": [
+      {
+        "type": "formation+",
+        "cle": "/fr/formation/entreprendre-innover-pour-transitionsemprintes"
+      },
+      {
+        "type": "formation+",
+        "cle": "/fr/formation/gouvernance-responsabilites-securitequalite-environnement"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/entreprendre-innover-pour-transitions-emprintes"
+      }
+    ]
+  },
+  {
     "date": "2026-09-15T13:31:45.361Z",
     "resume": {
       "formations": 40,
