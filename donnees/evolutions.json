@@ -1,5 +1,28 @@
 [
   {
+    "date": "2026-09-18T08:15:41.767Z",
+    "resume": {
+      "formations": 41,
+      "sansCatalogue": 20,
+      "pdfs": 30,
+      "fiches": 1219,
+      "anomaliesFaceAFace": 25,
+      "anomaliesTotal": 14,
+      "retelecharges": 0,
+      "echecs": 0
+    },
+    "evenements": [
+      {
+        "type": "formation+",
+        "cle": "/fr/formation/genie-industriel-apprentissage"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/genie-industriel-produits-et-process"
+      }
+    ]
+  },
+  {
     "date": "2026-09-17T08:40:02.966Z",
     "resume": {
       "formations": 41,
