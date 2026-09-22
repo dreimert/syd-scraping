@@ -130,7 +130,7 @@ Mais ce n'est pas ce qu'on vous demande. **L'objectif n'est pas d'arriver au ré
 
 Aucune de ces questions ne se répond en lisant la sortie d'un programme, même correct. Et ce sont exactement celles que je vous poserai à la prochaine séance : l'évaluation porte sur le chemin, pas sur le livrable.
 
-Utilisez l'IA si elle vous aide — mais comme un collègue à qui vous demandez des comptes, pas comme un oracle. La règle est simple : **vous devez pouvoir expliquer chaque ligne que vous rendez.** Si vous ne pouvez pas, vous n'avez pas fait le TD, vous avez regardé quelqu'un d'autre le faire.
+Utilisez l'IA si elle vous aide — mais comme un collègue à qui vous demandez des comptes, pas comme un oracle. La règle est simple : **vous devez pouvoir expliquer chaque ligne que vous exécutez.** Si vous ne pouvez pas, vous n'avez pas fait le TD, vous avez regardé quelqu'un d'autre le faire.
 
 ## Implémentation
 
@@ -271,6 +271,8 @@ Quelques questions auxquelles vous devez savoir répondre à l'issue du TD :
 ## Pour aller plus loin
 
 Extraire plus d'informations comme les pré-requis, les compétences listées...
+
+Statistiques : https://dreimert.github.io/syd-scraping/
 
 Application en conditions réelles avec des millions d'utilisateurs pour le Covid : https://www.youtube.com/watch?v=_UND6IOeIrM.
 
