@@ -1,3 +1,4 @@
+import { setTimeout as sleep } from 'node:timers/promises'
 import { extractText, getDocumentProxy } from 'unpdf'
 import * as cheerio from 'cheerio'
 
@@ -8,17 +9,6 @@ import * as cheerio from 'cheerio'
 //     npm run serve    (dans un terminal)
 //     BASE_URL=http://localhost:8000 node index.js
 const BASE_URL = process.env.BASE_URL ?? 'https://www.insa-lyon.fr'
-
-/**
- * Permet d'attendre duration ms
- * @param {number} duration - Durée en millisecondes
- * @returns {Promise<void>} Promise qui se résout après la durée spécifiée
- */
-function sleep (duration) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, duration)
-  })
-}
 
 /**
  * Télécharger une page HTML
