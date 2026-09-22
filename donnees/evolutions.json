@@ -1,5 +1,24 @@
 [
   {
+    "date": "2026-09-22T08:33:08.413Z",
+    "resume": {
+      "formations": 40,
+      "sansCatalogue": 19,
+      "pdfs": 30,
+      "fiches": 1219,
+      "anomaliesFaceAFace": 25,
+      "anomaliesTotal": 14,
+      "retelecharges": 0,
+      "echecs": 0
+    },
+    "evenements": [
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/expert-en-vehicules-electrifies"
+      }
+    ]
+  },
+  {
     "date": "2026-09-21T08:57:28.198Z",
     "resume": {
       "formations": 41,
