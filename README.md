@@ -96,6 +96,30 @@ L'objectif est d'extraire du site et des pdfs les informations de chaque cours e
 
 Ordre de grandeur pour vous situer : une quarantaine de formations, une trentaine de pdfs, environ 2800 fiches de cours.
 
+### Format de sortie
+
+Pour pouvoir comparer vos résultats entre vous, votre base est un fichier `db.json` : un objet dont chaque clé est le code d'un EC, et chaque valeur a cette forme :
+
+```json
+{
+  "TC-3-S1-EC-PBS": {
+    "code": "TC-3-S1-EC-PBS",
+    "ue": "TC-3-S1-SYS",
+    "ects": 1,
+    "heures": { "cours": 4, "td": 16, "tp": 0, "projet": 0, "personnel": 4 },
+    "catalogue": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/doc-catalogue-telecoms-2026-2027.pdf"
+  }
+}
+```
+
+Trois règles :
+
+* **Les nombres sont des nombres**, pas des chaînes : `1`, pas `"1"`.
+* **Une valeur inconnue vaut `null`**, jamais `0` ni `"undefined"`. `0` h de TP est une information, « je n'ai pas trouvé » en est une autre.
+* **`ue` désigne l'UE dont relève l'EC**, ou `null` si vous n'avez pas su la retrouver. `catalogue` dit d'où vient la fiche : quand deux millésimes se contredisent, c'est ce qui vous permettra de comprendre pourquoi.
+
+Ce format est un point de départ, pas une contrainte : vous pouvez ajouter des champs, pas en retirer.
+
 ## Ce sujet a cassé, et c'est le sujet
 
 Jusqu'en 2025, le chemin n'était pas celui-là. On partait de https://www.insa-lyon.fr/fr/formation/diplomes/ING, on suivait un lien « parcours » par formation qui donnait la liste de ses UEs, et chaque UE renvoyait vers *son* pdf, hébergé sur `planete.insa-lyon.fr/scolpeda`. Un pdf par cours.
@@ -211,13 +235,16 @@ L'exemple de `run()` ne se lance que si on exécute `node index.js`, pas quand u
 
 Si vous êtes trop agressif avec les serveurs de l'INSA, vous serez bannis temporairement. Vous avez la fonction `sleep` dans `index.js`.
 
+Présentez-vous. `index.js` envoie un en-tête `User-Agent` qui dit qui fait les requêtes et comment le joindre : ajoutez-y votre contact. Un administrateur qui voit passer votre trafic peut alors vous écrire au lieu de vous bannir, et c'est aussi une forme de la transparence que demande la CNIL (cf. Cadre légal).
+
 Les données réelles ne sont jamais propres. Ce que vous allez rencontrer :
 
 * **Le nommage des pdfs est incohérent.** `catalogue-…`, `catalog-…`, `doc-catalogue-…`, `doc-catalog-…`, avec ou sans suffixe `_fr` / `-fr`. Vous ne pouvez pas deviner les URLs : il faut lire les pages de formation.
 * **Plusieurs millésimes cohabitent**, en français et en anglais. Le génie mécanique en publie quatre. Lequel garder ? C'est à vous de décider, et d'assumer votre choix.
 * **Toutes les formations n'ont pas de catalogue.** Le département XXXXXXXXX ne publie qu'une plaquette commerciale, sans fiche de cours : à vous de trouver lequel. Votre extraction ne couvrira jamais 100 % du périmètre : sachez dire ce qu'il vous manque, et pourquoi.
 * **Le format des fiches varie.** Certains pdfs, surtout les anglais, ne présentent pas les ECTS comme les autres. Si vous trouvez 119 codes mais seulement 103 ECTS, ce n'est pas un bug de votre regex : c'est une variante à traiter. Pour vous donner l'ordre de grandeur de l'enjeu : sur l'ensemble des catalogues, `/CODE : ([^\n]*)/` trouve 2561 fiches, et la même regex tolérante aux espaces, `/CODE\s*:\s*([A-Z0-9][A-Z0-9-]*)/`, en trouve 2781. Deux cents fiches se jouent sur un espace.
-* **Un catalogue distingue les UE et les EC.** Une UE regroupe plusieurs EC et les ECTS de l'UE sont la somme de ceux de ses EC. Réfléchissez à comment représenter ça dans votre base.
+* **Les valeurs elles-mêmes ne sont pas propres.** Il y a des décimaux, écrits avec un point : `ECTS : 1.5`, `ECTS : 2.00`, `TD : 1.5h`. Une regex `\d+` les coupe en deux sans rien dire, et `parseInt` fait pareil : utilisez `Number`. Il y a surtout des fiches où l'ECTS est vide, et une soixantaine où le pdf affiche en toutes lettres `ECTS : undefined` — un bug du programme qui génère les catalogues, arrivé tel quel jusqu'à vous. Ni l'un ni l'autre ne vaut `0` : c'est `null`.
+* **Un catalogue distingue les UE et les EC.** Une UE regroupe plusieurs EC et les ECTS de l'UE sont la somme de ceux de ses EC. Mais les fiches détaillées sont toutes des fiches d'EC, et bien peu disent à quelle UE elles appartiennent. Le lien est ailleurs dans le pdf : regardez ses premières pages. Réfléchissez à comment représenter ça dans votre base.
 
 ## Cadre légal
 

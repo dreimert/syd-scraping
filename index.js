@@ -10,6 +10,11 @@ import * as cheerio from 'cheerio'
 //     BASE_URL=http://localhost:8000 node index.js
 const BASE_URL = process.env.BASE_URL ?? 'https://www.insa-lyon.fr'
 
+// On se présente : le User-Agent dit au serveur qui fait ces requêtes et
+// comment le joindre. C'est de la politesse, et c'est de la transparence au
+// sens de la CNIL (cf. README). Ajoutez-y votre propre contact.
+const HEADERS = { 'User-Agent': 'syd-scraping (TD INSA Lyon ; https://github.com/dreimert/syd-scraping)' }
+
 // Les deux fonctions de téléchargement lèvent une erreur au lieu de renvoyer
 // undefined : un scraper doit crier quand il échoue (cf. README). C'est à
 // l'appelant de décider s'il peut continuer sans cette page.
@@ -24,7 +29,7 @@ async function getHtml (url) {
   if (!url) {
     throw new Error('getHtml :: url undefined')
   }
-  const response = await fetch(url)
+  const response = await fetch(url, { headers: HEADERS })
   if (!response.ok) {
     throw new Error(`getHtml :: HTTP ${response.status} sur ${url}`)
   }
@@ -41,7 +46,7 @@ async function getPdf (url) {
   if (!url) {
     throw new Error('getPdf :: url undefined')
   }
-  const response = await fetch(url)
+  const response = await fetch(url, { headers: HEADERS })
   if (!response.ok) {
     throw new Error(`getPdf :: HTTP ${response.status} sur ${url}`)
   }
@@ -103,9 +108,10 @@ async function extractUrlPdfs (url) {
  * @returns {Promise<Object>} Base de données contenant les codes extraits des PDFs
  */
 async function downloadAndAnalysePdf (urls) {
-  // Crée une base de données avec l'association test = 42. Mettre {} pour initialiser la db comme une DB vide.
-  /** @type {{[key: string]: string}} */
-  const db = { test: '42' }
+  // La base : une entrée par EC, indexée par son code. Le format attendu
+  // est décrit dans le README (« Format de sortie »).
+  /** @type {{[code: string]: Object}} */
+  const db = {}
 
   for (let url of urls) {
     // On reste poli avec les serveurs de l'INSA, y compris quand la requête
@@ -131,7 +137,8 @@ async function downloadAndAnalysePdf (urls) {
 
     if (code) {
       console.log('Code :', code)
-      db[code] = "Je fais ça au pif, juste pour montrer que je peux modifier la db"
+      // Pour l'instant on ne connaît que le code. À vous de remplir le reste.
+      db[code] = { code, ue: null, ects: null, heures: null, catalogue: url }
     } else {
       // Un catalogue sans aucun code, c'est suspect : on le signale.
       console.warn(`Aucun code trouvé dans ${url}`)
