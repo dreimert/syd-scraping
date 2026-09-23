@@ -31,7 +31,7 @@ Sur votre machine personnelle, prenez l'installeur : https://nodejs.org/en/downl
 
 ### Dans le cas des salles machines de TC
 
-Attention ! Vous devez faire cette manipulation dans un répertoire non virtuel. Par exemple dans votre home. Si vous le faite dans HOME_INSA ou sur le bureau, ça ne fonctionnera pas.
+Attention ! Vous devez faire cette manipulation dans un répertoire non virtuel. Par exemple dans votre home. Si vous le faites dans HOME_INSA ou sur le bureau, ça ne fonctionnera pas.
 
 #### Avec fnm (recommandé)
 
@@ -174,6 +174,10 @@ Puis, dans un second, lancez le scraper contre elle :
 
     BASE_URL=http://localhost:8000 node index.js
 
+Le port 8000 est imposé : les liens de la copie ont été réécrits en dur vers `http://localhost:8000`.
+
+La copie ne contient que les pages qui mènent à un catalogue. Quelques liens du catalogue des formations (formation doctorale, formations courtes…) n'y sont pas et répondront 404 hors ligne alors qu'ils fonctionnent en ligne : ce n'est pas votre code.
+
 C'est tout : `index.js` lit `BASE_URL` dans l'environnement, et les liens de la copie ont été réécrits pour pointer vers le serveur local. Votre code n'a pas à savoir s'il parle à l'INSA ou à votre disque dur — c'est d'ailleurs une propriété qu'il faut chercher à préserver, elle rend le programme testable.
 
 ## Test
@@ -186,14 +190,18 @@ Un harnais minimal est fourni, sans aucune dépendance :
 
 Il s'appuie sur `test/extrait-catalogue-telecoms.txt`, un extrait réel du catalogue déjà converti en texte, et sur des valeurs relevées à la main dans le pdf. Lisez `test/extraction.test.js` : les trois premiers tests comparent à une référence connue, le dernier vérifie une *propriété* (le total des horaires doit être égal à la somme du détail) qui, elle, doit rester vraie sur les 2800 fiches. Les deux approches sont utiles.
 
-À vous d'ajouter vos cas, en particulier pour les formats qui vous ont posé problème.
+À vous d'ajouter vos cas, en particulier pour les formats qui vous ont posé problème. `index.js` exporte ses fonctions, vous pouvez donc tester votre propre code et pas seulement des regex recopiées :
+
+    import { pdfToText } from '../index.js'
+
+L'exemple de `run()` ne se lance que si on exécute `node index.js`, pas quand un test importe le fichier.
 
 ## Par où commencer ?
 
 * Il y a des exemples de code dans `index.js`.
 * Commencez par identifier comment télécharger un pdf. "Où" est le pdf après le téléchargement ?
-* Comment transformez ce pdf en texte. Cf. « Convertir un pdf en texte » plus haut.
-* Analysez le texte pour en extraire les informations voulues (Cf. Protocole au dessus). Les [RegExp](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/RegExp) sont votre amie et [regex101](https://regex101.com/) aussi.
+* Comment transformer ce pdf en texte ? Cf. « Convertir un pdf en texte » plus haut.
+* Analysez le texte pour en extraire les informations voulues (Cf. Protocole au dessus). Les [RegExp](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/RegExp) sont vos amies, et [regex101](https://regex101.com/) aussi.
     * `/CODE : ([^\n]*)/` : extrait le code du **premier** cours du pdf. Un catalogue en contient une centaine : comment les récupérer tous ?
 * Comment télécharger et analyser une page de formation pour y trouver son catalogue pdf.
 * Comment extraire toutes les formations de l'INSA.
@@ -265,7 +273,7 @@ Quelques questions auxquelles vous devez savoir répondre à l'issue du TD :
 * Quel département ne publie pas de catalogue de cours ? Comment l'avez-vous découvert ?
 * Combien de fiches avez-vous extraites, et combien vous en manque-t-il ?
 * Qu'est-ce que l'exception de fouille de textes et de données, et comment un site s'y oppose-t-il ?
-* Vous avez collecté des adresses mail. Sur quelle base légale, et quelles garanties auriez-vous dû mettre en place ?
+* Avez-vous collecté les adresses mail ? Justifiez. Si vous l'aviez fait, sur quelle base légale, et avec quelles garanties ?
 * Le site ne publie pas de `robots.txt`. Qu'est-ce que ça vous autorise ?
 
 ## Pour aller plus loin

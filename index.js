@@ -4,53 +4,49 @@ import * as cheerio from 'cheerio'
 
 // le mot clef 'await' permet d'attendre la fin d'une opération asynchrone
 
-// En temps normal on tape sur le site de l'INSA. Pour travailler hors ligne :
-//     npm run backup   (une fois, avec du réseau)
+// En temps normal on tape sur le site de l'INSA. Pour travailler hors ligne,
+// décompresser l'archive fournie par l'intervenant (dossier backup/), puis :
 //     npm run serve    (dans un terminal)
 //     BASE_URL=http://localhost:8000 node index.js
 const BASE_URL = process.env.BASE_URL ?? 'https://www.insa-lyon.fr'
 
+// Les deux fonctions de téléchargement lèvent une erreur au lieu de renvoyer
+// undefined : un scraper doit crier quand il échoue (cf. README). C'est à
+// l'appelant de décider s'il peut continuer sans cette page.
+
 /**
  * Télécharger une page HTML
  * @param {string} url - L'URL de la page HTML à télécharger
- * @returns {Promise<string|undefined>} Le contenu HTML de la page, ou undefined en cas d'erreur
+ * @returns {Promise<string>} Le contenu HTML de la page
+ * @throws {Error} Si l'URL est absente ou si le serveur ne répond pas 2xx
  */
 async function getHtml (url) {
-  if (url) {
-    try {
-      const response = await fetch(url)
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
-      }
-      return await response.text()
-    } catch (error) {
-      console.error('getHtml :: FETCH ERROR:', error)
-    }
-  } else {
-    console.error('getHtml :: url undefined')
+  if (!url) {
+    throw new Error('getHtml :: url undefined')
   }
+  const response = await fetch(url)
+  if (!response.ok) {
+    throw new Error(`getHtml :: HTTP ${response.status} sur ${url}`)
+  }
+  return await response.text()
 }
 
 /**
  * Télécharger un pdf
  * @param {string} url - L'URL du fichier PDF à télécharger
- * @returns {Promise<Uint8Array|undefined>} Le contenu du PDF, ou undefined en cas d'erreur
+ * @returns {Promise<Uint8Array>} Le contenu du PDF
+ * @throws {Error} Si l'URL est absente ou si le serveur ne répond pas 2xx
  */
 async function getPdf (url) {
-  if (url) {
-    try {
-      const response = await fetch(url)
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
-      }
-      // Un PDF est un fichier binaire : pas de .text() ici, sinon on le corrompt.
-      return new Uint8Array(await response.arrayBuffer())
-    } catch (error) {
-      console.error('getPdf :: FETCH ERROR:', error)
-    }
-  } else {
-    console.error('getPdf :: url undefined')
+  if (!url) {
+    throw new Error('getPdf :: url undefined')
   }
+  const response = await fetch(url)
+  if (!response.ok) {
+    throw new Error(`getPdf :: HTTP ${response.status} sur ${url}`)
+  }
+  // Un PDF est un fichier binaire : pas de .text() ici, sinon on le corrompt.
+  return new Uint8Array(await response.arrayBuffer())
 }
 
 /**
@@ -74,9 +70,6 @@ async function pdfToText (pdf) {
  */
 async function extractUrlFormations (url) {
   const html = await getHtml(url)
-  if (!html) {
-    return []
-  }
   const $ = cheerio.load(html)
   const urls = $('a[href^="/fr/formation/"]').map(function () {
     return BASE_URL + $(this).attr('href')
@@ -92,9 +85,6 @@ async function extractUrlFormations (url) {
  */
 async function extractUrlPdfs (url) {
   const html = await getHtml(url)
-  if (!html) {
-    return []
-  }
   const $ = cheerio.load(html)
   const urls = $('a[href$=".pdf"]').map(function () {
     return $(this).attr('href')
@@ -110,40 +100,45 @@ async function extractUrlPdfs (url) {
 /**
  * Télécharge et analyse des fichiers PDF
  * @param {string[]} urls - Tableau d'URLs des fichiers PDF à télécharger et analyser
- * @returns {Promise<Object|undefined>} Base de données contenant les codes extraits des PDFs, ou undefined en cas d'erreur
+ * @returns {Promise<Object>} Base de données contenant les codes extraits des PDFs
  */
 async function downloadAndAnalysePdf (urls) {
-  try {
-    // Crée une base de données avec l'association test = 42. Mettre {} pour initialiser la db comme une DB vide.
-    /** @type {{[key: string]: string}} */
-    const db = { test: '42' }
+  // Crée une base de données avec l'association test = 42. Mettre {} pour initialiser la db comme une DB vide.
+  /** @type {{[key: string]: string}} */
+  const db = { test: '42' }
 
-    for (let url of urls) {
-      const pdf = await getPdf(url)
+  for (let url of urls) {
+    // On reste poli avec les serveurs de l'INSA, y compris quand la requête
+    // précédente a échoué.
+    await sleep(500)
 
-      // console.log('pdf', pdf)
-
-      if (pdf) {
-        const txt = await pdfToText(pdf)
-
-        // Un catalogue contient une fiche par cours : ici on ne récupère que
-        // la première. À vous de toutes les extraire.
-        const code = /CODE : ([^\n]*)/.exec(txt)?.[1]
-
-        if (code) {
-          console.log('Code :', code)
-          db[code] = "Je fais ça au pif, juste pour montrer que je peux modifier la db"
-        }
-      }
-
-      // On reste poli avec les serveurs de l'INSA.
-      await sleep(500)
+    // Un pdf qui ne se télécharge pas ne doit pas faire perdre les autres :
+    // on attrape l'erreur, on la signale bruyamment, et on passe au suivant.
+    // Attraper une erreur, ce n'est pas la faire disparaître : sans ce
+    // console.error, on retomberait dans l'échec silencieux.
+    let pdf
+    try {
+      pdf = await getPdf(url)
+    } catch (error) {
+      console.error(`Impossible de télécharger ${url} :`, error)
+      continue
     }
+    const txt = await pdfToText(pdf)
 
-    return db
-  } catch (error) {
-    console.error(`downloadAndAnalysePdf :: ERROR: ${error}`)
+    // Un catalogue contient une fiche par cours : ici on ne récupère que
+    // la première. À vous de toutes les extraire.
+    const code = /CODE : ([^\n]*)/.exec(txt)?.[1]
+
+    if (code) {
+      console.log('Code :', code)
+      db[code] = "Je fais ça au pif, juste pour montrer que je peux modifier la db"
+    } else {
+      // Un catalogue sans aucun code, c'est suspect : on le signale.
+      console.warn(`Aucun code trouvé dans ${url}`)
+    }
   }
+
+  return db
 }
 
 // Exemple
@@ -161,5 +156,10 @@ async function run () {
   console.log(JSON.stringify(db, null, 2))
 }
 
-// Lance l'exemple
-run()
+export { getHtml, getPdf, pdfToText, extractUrlFormations, extractUrlPdfs, downloadAndAnalysePdf }
+
+// Lance l'exemple seulement si on exécute ce fichier (node index.js), pas
+// quand un test l'importe.
+if (import.meta.main) {
+  run()
+}

@@ -63,5 +63,8 @@ typings/
 site/**
 backup/
 
+# base produite par le scraper
+db.json
+
 # archive de la copie hors-ligne, distribuée hors dépôt
 *.tar.gz

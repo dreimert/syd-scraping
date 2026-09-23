@@ -1,6 +1,7 @@
-// Sert la copie locale du site faite par backup.js, pour travailler hors ligne.
+// Sert la copie locale du site (dossier backup/, issu de l'archive fournie par
+// l'intervenant), pour travailler hors ligne.
 //
-//     node serve.js
+//     npm run serve
 //
 // Puis, dans un autre terminal :
 //
@@ -11,7 +12,10 @@ import { readFile } from 'node:fs/promises'
 import { join, normalize, extname } from 'node:path'
 
 const DIR = 'backup'
-const PORT = Number(process.env.PORT ?? 8000)
+// Port imposé : les liens de la copie ont été réécrits en dur vers
+// http://localhost:8000. Sur un autre port, les pages s'afficheraient mais
+// les liens vers les pdfs pointeraient ailleurs.
+const PORT = 8000
 
 const TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -39,7 +43,7 @@ createServer(async (request, response) => {
 
   console.log(`404 ${path}`)
   response.writeHead(404, { 'content-type': 'text/plain; charset=utf-8' })
-  response.end('Pas dans la copie locale. Avez-vous lancé `npm run backup` ?\n')
+  response.end("Pas dans la copie locale. Avez-vous décompressé l'archive dans backup/ ?\n")
 }).listen(PORT, () => {
   console.log(`Copie locale servie sur http://localhost:${PORT}`)
   console.log(`Lancez le scraper avec : BASE_URL=http://localhost:${PORT} node index.js`)
