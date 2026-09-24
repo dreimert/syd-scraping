@@ -1,0 +1,2 @@
+# Le fichier de test est comparé ligne à ligne : pas de CRLF, même sous Windows.
+*.txt text eol=lf

@@ -2,6 +2,14 @@
 
 TD de scraping du cours de systèmes distribués.
 
+> [!WARNING]
+> **Windows n'est pas supporté.** Ce TD-ci devrait à peu près fonctionner, mais les suivants ne fonctionneront pas sous Windows. Travaillez sous Linux (ou macOS) dès maintenant, vous avez plein d'options :
+>
+> * la VDI de l'INSA ;
+> * une clé USB bootable ;
+> * une machine virtuelle ;
+> * un conteneur Docker.
+
 L'objectif de ce TD est de manipuler des données comme "dans la vraie vie", en m'inspirant de situations réellement rencontrées dans mon travail. On va voir aussi l'architecture que l'on peut mettre en place pour cela.
 
 *< À lire avec la voix d'introduction du Comité des reprises (https://www.youtube.com/user/ComiteDesReprises) >*
