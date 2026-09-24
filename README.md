@@ -174,6 +174,14 @@ Lancer le code :
 
     node index.js
 
+### Lire le code
+
+Ouvrez le dossier dans votre éditeur. Avec VS Code, si la commande `code` est installée :
+
+    code .
+
+Commencez par `index.js` : c'est là que tout se passe.
+
 ### Convertir un pdf en texte
 
 Un pdf n'est pas un fichier texte : c'est une description de mise en page, où « ce qui est écrit » n'existe qu'en tant que caractères positionnés sur la feuille. Il faut donc une bibliothèque pour reconstituer le texte, et le résultat dépend d'elle : deux outils ne placeront pas les espaces et les retours à la ligne au même endroit. C'est pour ça que vos expressions régulières doivent être écrites en regardant le texte réellement produit, pas le pdf affiché à l'écran.
