@@ -1,5 +1,40 @@
 [
   {
+    "date": "2026-09-26T08:36:36.676Z",
+    "resume": {
+      "formations": 40,
+      "sansCatalogue": 19,
+      "pdfs": 30,
+      "fiches": 1225,
+      "anomaliesFaceAFace": 25,
+      "anomaliesTotal": 15,
+      "retelecharges": 2,
+      "echecs": 0
+    },
+    "evenements": [
+      {
+        "type": "pdf+",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/doc-catalog-information-science-and-technology-semester-2026-2027.pdf",
+        "fiches": 14
+      },
+      {
+        "type": "pdf+",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/doc-catalogue-genie-industriel-2026-2027.pdf",
+        "fiches": 74
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalogue-genie_industriel-2024-2025_fr.pdf",
+        "fiches": 66
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalogue-genie_industriel-2025-2026_fr.pdf",
+        "fiches": 64
+      }
+    ]
+  },
+  {
     "date": "2026-09-25T08:49:59.711Z",
     "resume": {
       "formations": 40,
