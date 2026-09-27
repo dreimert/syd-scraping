@@ -1,5 +1,5 @@
 {
-  "date": "2026-09-26T08:36:36.676Z",
+  "date": "2026-09-27T09:16:13.179Z",
   "formations": {
     "/fr/formation/annee-d-echange-l-etranger-ae2": {
       "pdfs": []
@@ -16449,7 +16449,7 @@
           "total": 20
         }
       },
-      "retelecharge": true
+      "retelecharge": false
     },
     "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/doc-catalog-mechanical-engineering-2026-2027.pdf": {
       "etag": "\"1fcff9-6501b4d549a56\"",
@@ -21134,7 +21134,7 @@
           "total": 7
         }
       },
-      "retelecharge": true
+      "retelecharge": false
     },
     "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/doc-catalogue-genie-mecanique-2026-2027.pdf": {
       "etag": "\"223fb5-6501b4b4fa193\"",
