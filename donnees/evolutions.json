@@ -1,5 +1,35 @@
 [
   {
+    "date": "2026-10-06T10:18:16.326Z",
+    "resume": {
+      "formations": 40,
+      "sansCatalogue": 19,
+      "pdfs": 29,
+      "fiches": 1227,
+      "anomaliesFaceAFace": 25,
+      "anomaliesTotal": 15,
+      "retelecharges": 1,
+      "echecs": 0
+    },
+    "evenements": [
+      {
+        "type": "pdf+",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/doc-catalogue-materiaux-2026-2027.pdf",
+        "fiches": 65
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalogue-materiaux-24-25_fr.pdf",
+        "fiches": 63
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalogue-materiaux-25-26_fr.pdf",
+        "fiches": 63
+      }
+    ]
+  },
+  {
     "date": "2026-10-05T10:27:02.108Z",
     "resume": {
       "formations": 40,
