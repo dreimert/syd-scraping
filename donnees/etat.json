@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-06T10:18:16.326Z",
+  "date": "2026-10-07T10:16:31.402Z",
   "formations": {
     "/fr/formation/annee-d-echange-l-etranger-ae2": {
       "pdfs": []
@@ -23154,7 +23154,7 @@
           "total": 770
         }
       },
-      "retelecharge": true
+      "retelecharge": false
     },
     "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/doc-catalogue-telecoms-2026-2027.pdf": {
       "etag": "\"e6b88-659df51176baf\"",
