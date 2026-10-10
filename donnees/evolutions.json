@@ -1,5 +1,35 @@
 [
   {
+    "date": "2026-10-10T09:51:10.300Z",
+    "resume": {
+      "formations": 40,
+      "sansCatalogue": 19,
+      "pdfs": 28,
+      "fiches": 1220,
+      "anomaliesFaceAFace": 25,
+      "anomaliesTotal": 15,
+      "retelecharges": 1,
+      "echecs": 0
+    },
+    "evenements": [
+      {
+        "type": "pdf+",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/doc-catalogue-genie-mecanique-procedex-polymeres-avances-2026-2027.pdf",
+        "fiches": 73
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalogue-gmppa-2024-2025.pdf",
+        "fiches": 73
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalogue-gmppa-2025-2026.pdf",
+        "fiches": 73
+      }
+    ]
+  },
+  {
     "date": "2026-10-09T10:34:15.430Z",
     "resume": {
       "formations": 40,
