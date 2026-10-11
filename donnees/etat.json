@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-10T09:51:10.300Z",
+  "date": "2026-10-11T10:00:56.494Z",
   "formations": {
     "/fr/formation/annee-d-echange-l-etranger-ae2": {
       "pdfs": []
@@ -20874,7 +20874,7 @@
           "total": 30
         }
       },
-      "retelecharge": true
+      "retelecharge": false
     },
     "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/doc-catalogue-informatique-par-apprentissage-2026-2027.pdf": {
       "etag": "\"a4582-65264ddc240d9\"",
