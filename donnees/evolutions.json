@@ -1,5 +1,19 @@
 [
   {
+    "date": "2026-10-20T08:33:19.160Z",
+    "resume": {
+      "formations": 40,
+      "sansCatalogue": 19,
+      "pdfs": 28,
+      "fiches": 1220,
+      "anomaliesFaceAFace": 25,
+      "anomaliesTotal": 15,
+      "retelecharges": 0,
+      "echecs": 0
+    },
+    "evenements": []
+  },
+  {
     "date": "2026-10-19T08:53:32.821Z",
     "resume": {
       "formations": 40,
