@@ -55,7 +55,7 @@ function evenement (e) {
   if (e.type === 'fiche~') detail = `<code>${echappe(e.champ)}</code> ${echappe(e.avant)} → <strong>${echappe(e.apres)}</strong>`
   else if (e.type === 'pdf~') detail = `${e.avantTaille} → ${e.taille} octets`
   else if (e.type === 'pdf+' || e.type === 'pdf-') detail = `${e.fiches} fiches`
-  else if (e.type === 'échec') detail = `HTTP ${echappe(e.statut)}`
+  else if (e.type === 'échec') detail = e.erreur ? `<code>${echappe(e.erreur)}</code>` : `HTTP ${echappe(e.statut)}`
   else if (e.pdf) detail = `dans ${echappe(court(e.pdf))}`
   return `<li class="${classe}"><span class="type">${libelle}</span><span class="cle">${echappe(court(e.cle))}</span><span class="detail">${detail}</span></li>`
 }
@@ -71,6 +71,29 @@ function releve (r, index) {
     ? `<details><summary>${r.evenements.length} évolutions</summary><ul class="evenements">${liste}</ul></details>`
     : `<ul class="evenements">${liste}</ul>`
   return `<section class="releve"><h3>${date(r.date)} <span class="compte">${r.evenements.length}</span></h3>${corps}</section>`
+}
+
+/**
+ * Le bandeau affiché quand le dernier relevé n'a pas pu lire le catalogue.
+ * Les chiffres, reconduits, ne sont alors plus ceux du jour : il faut le dire.
+ * @param {Object[]} historique - du plus récent au plus ancien
+ * @returns {string}
+ */
+function alerte (historique) {
+  const e = historique[0].inaccessible
+  if (!e) return ''
+  const reussi = historique.find((r) => !r.inaccessible)
+  // Une erreur réseau, c'est le site qui ne répond pas à qui vient de
+  // l'extérieur ; un statut HTTP, c'est le site qui répond, mais mal.
+  const [titre, pourquoi] = e.erreur
+    ? ['Site inaccessible depuis l\'extérieur.',
+        `www.insa-lyon.fr ne répond plus aux connexions venant d'en dehors du réseau de l'INSA (<code>${echappe(e.erreur)}</code>).`]
+    : ['Site en erreur.', `Le catalogue des formations répond HTTP ${echappe(e.statut)}.`]
+  const chiffres = reussi
+    ? `Les chiffres ci-dessous sont ceux du dernier relevé réussi, le ${date(reussi.date)}.`
+    : 'Aucun relevé n\'a encore réussi.'
+  return `<div class="alerte" role="status"><strong>${titre}</strong> ${pourquoi}
+Le relevé du ${date(historique[0].date)} n'a rien pu lire. ${chiffres}</div>`
 }
 
 async function run () {
@@ -106,6 +129,9 @@ async function run () {
   h1 { font-size: 1.5rem; margin: 0 0 .25rem; letter-spacing: -.01em; }
   .chapeau { color: var(--doux); margin: 0 0 2rem; }
   .chapeau a { color: var(--accent); }
+  .alerte { background: var(--carte); border: 1px solid var(--trait); border-left: 4px solid var(--echec);
+    border-radius: .3rem; padding: .8rem 1rem; margin: -1rem 0 2rem; }
+  .alerte strong { color: var(--echec); }
   .cartes { display: grid; gap: .75rem; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); margin-bottom: 2.5rem; }
   .carte { background: var(--carte); border: 1px solid var(--trait); border-radius: .6rem; padding: .85rem .9rem; }
   .libelle { color: var(--doux); font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; }
@@ -141,6 +167,7 @@ async function run () {
 <h1>Veille sur l'offre de formation de l'INSA Lyon</h1>
 <p class="chapeau">Relevé chaque nuit depuis <a href="https://www.insa-lyon.fr/fr/formation/catalogue">le catalogue des formations</a>.
 Dernier passage : ${date(dernier.date)}.</p>
+${alerte(historique)}
 
 <div class="cartes">
   ${carte('Formations', dernier.resume.formations, serie('formations'))}

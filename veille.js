@@ -34,14 +34,28 @@ async function lireJson (chemin, defaut) {
 }
 
 /**
- * Une requête, avec l'en-tête qui dit qui nous sommes.
+ * Une requête, avec l'en-tête qui dit qui nous sommes. Une panne réseau ne
+ * lève pas d'exception : elle revient comme une réponse en échec, la raison
+ * dans erreur, pour être consignée au même titre qu'un statut HTTP.
  * @param {string} url
  * @param {Record<string,string>} entetes
- * @returns {Promise<Response>}
+ * @returns {Promise<Response | { ok: false, status: undefined, erreur: string }>}
  */
 async function requete (url, entetes = {}) {
-  return fetch(url, { headers: { 'user-agent': UA, ...entetes } })
+  try {
+    return await fetch(url, { headers: { 'user-agent': UA, ...entetes } })
+  } catch (err) {
+    // undici range la vraie raison (délai dépassé, connexion refusée…) dans cause.
+    return { ok: false, status: undefined, erreur: err.cause?.code ?? err.cause?.message ?? err.message }
+  }
 }
+
+/**
+ * L'échec d'une requête, tel qu'on le consigne.
+ * @param {string} url
+ * @param {{ status?: number, erreur?: string }} r
+ */
+const echecDe = (url, r) => (r.erreur ? { url, erreur: r.erreur } : { url, statut: r.status })
 
 const POSTES = ['Cours', 'TD', 'TP', 'Projet', 'Evaluation', 'Face à face pédagogique', 'Travail personnel', 'Total']
 const CLEFS = ['cours', 'td', 'tp', 'projet', 'evaluation', 'ff', 'personnel', 'total']
@@ -92,9 +106,15 @@ function anomalies (f) {
 async function releve (precedent) {
   const etat = { date: new Date().toISOString(), formations: {}, pdfs: {}, echecs: [] }
 
-  // 1. Le catalogue.
-  const reponse = await requete(`${BASE_URL}/fr/formation/catalogue`)
-  if (!reponse.ok) throw new Error(`catalogue inaccessible : HTTP ${reponse.status}`)
+  // 1. Le catalogue. S'il ne répond pas, le site est hors d'atteinte : on
+  // reconduit le dernier état connu plutôt que d'annoncer la disparition de
+  // toutes les formations, et on le dit.
+  const catalogue = '/fr/formation/catalogue'
+  const reponse = await requete(BASE_URL + catalogue)
+  if (!reponse.ok) {
+    const echec = echecDe(catalogue, reponse)
+    return { ...etat, formations: precedent.formations, pdfs: precedent.pdfs, echecs: [echec], inaccessible: echec }
+  }
   const $c = cheerio.load(await reponse.text())
   const formations = [...new Set($c('a[href^="/fr/formation/"]').map((i, e) => $c(e).attr('href')).get())]
     .filter((u) => !/catalogue|formations-|formation-doc/.test(u))
@@ -105,7 +125,7 @@ async function releve (precedent) {
     await sleep(500)
     const r = await requete(BASE_URL + formation)
     if (!r.ok) {
-      etat.echecs.push({ url: formation, statut: r.status })
+      etat.echecs.push(echecDe(formation, r))
       // On reprend ce qu'on savait, pour ne pas annoncer une disparition qui
       // n'est qu'une panne passagère.
       if (precedent.formations[formation]) etat.formations[formation] = precedent.formations[formation]
@@ -131,22 +151,28 @@ async function releve (precedent) {
       continue
     }
     if (!r.ok) {
-      etat.echecs.push({ url, statut: r.status })
+      etat.echecs.push(echecDe(url, r))
       if (avant) etat.pdfs[url] = avant
       continue
     }
 
-    const octets = new Uint8Array(await r.arrayBuffer())
-    // pdf.js transfère le buffer à son worker : après l'analyse, octets.length
-    // vaut 0. On relève la taille avant.
-    const taille = octets.length
-    const { text } = await extractText(await getDocumentProxy(octets), { mergePages: true })
-    etat.pdfs[url] = {
-      etag: r.headers.get('etag') ?? undefined,
-      modifie: r.headers.get('last-modified') ?? undefined,
-      taille,
-      fiches: analyser(text),
-      retelecharge: true
+    try {
+      const octets = new Uint8Array(await r.arrayBuffer())
+      // pdf.js transfère le buffer à son worker : après l'analyse, octets.length
+      // vaut 0. On relève la taille avant.
+      const taille = octets.length
+      const { text } = await extractText(await getDocumentProxy(octets), { mergePages: true })
+      etat.pdfs[url] = {
+        etag: r.headers.get('etag') ?? undefined,
+        modifie: r.headers.get('last-modified') ?? undefined,
+        taille,
+        fiches: analyser(text),
+        retelecharge: true
+      }
+    } catch (err) {
+      // Téléchargement interrompu ou pdf illisible : un échec comme un autre.
+      etat.echecs.push({ url, erreur: err.cause?.code ?? err.message })
+      if (avant) etat.pdfs[url] = avant
     }
   }
 
@@ -199,7 +225,7 @@ function comparer (avant, apres) {
     if (!apres.pdfs[url]) ajoute('pdf-', url, { fiches: Object.keys(avantPdfs[url].fiches ?? {}).length })
   }
 
-  for (const echec of apres.echecs) ajoute('échec', echec.url, { statut: echec.statut })
+  for (const { url, ...detail } of apres.echecs) ajoute('échec', url, detail)
 
   return evenements
 }
@@ -238,13 +264,16 @@ async function run () {
   const evenements = comparer(precedent, etat)
   const chiffres = resume(etat)
 
-  historique.unshift({ date: etat.date, resume: chiffres, evenements })
+  historique.unshift({ date: etat.date, resume: chiffres, evenements, inaccessible: etat.inaccessible })
   await writeFile(ETAT, JSON.stringify(etat, null, 2))
   await writeFile(EVOLUTIONS, JSON.stringify(historique, null, 2))
 
+  if (etat.inaccessible) console.warn('Site inaccessible :', etat.inaccessible)
   console.log(chiffres)
   console.log(`${evenements.length} évolutions`)
-  for (const e of evenements.slice(0, 40)) console.log(' ', e.type, e.cle, e.champ ? `${e.champ} ${e.avant} -> ${e.apres}` : '')
+  for (const e of evenements.slice(0, 40)) {
+    console.log(' ', e.type, e.cle, e.champ ? `${e.champ} ${e.avant} -> ${e.apres}` : (e.erreur ?? e.statut ?? ''))
+  }
 }
 
 run()
