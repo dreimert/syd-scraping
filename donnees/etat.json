@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-03T10:53:30.582Z",
+  "date": "2026-11-04T10:55:33.786Z",
   "formations": {
     "/fr/formation/annee-d-echange-l-etranger-ae2": {
       "pdfs": []
@@ -23475,5 +23475,14 @@
       "retelecharge": false
     }
   },
-  "echecs": []
+  "echecs": [
+    {
+      "url": "/fr/formation/catalogue",
+      "erreur": "UND_ERR_CONNECT_TIMEOUT"
+    }
+  ],
+  "inaccessible": {
+    "url": "/fr/formation/catalogue",
+    "erreur": "UND_ERR_CONNECT_TIMEOUT"
+  }
 }
