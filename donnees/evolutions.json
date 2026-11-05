@@ -1,5 +1,320 @@
 [
   {
+    "date": "2026-11-05T10:56:34.026Z",
+    "resume": {
+      "formations": 0,
+      "sansCatalogue": 0,
+      "pdfs": 0,
+      "fiches": 0,
+      "anomaliesFaceAFace": 0,
+      "anomaliesTotal": 0,
+      "retelecharges": 0,
+      "echecs": 0
+    },
+    "evenements": [
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/annee-d-echange-l-etranger-ae2"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/bachelor-specialite-ecoconception-systemes-froid-chauffage-ventilation-et-climatisation"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/bachelor-specialite-genie-civil-et-environnement"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/bachelor-specialite-infrastructures-reseaux-electriques"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/bachelor-specialite-plasturgie-et-ecologie-industrielle"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/biotechnologies-et-bioinformatique"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/entreprendre-innover-pour-transitionsemprintes"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/fimi-amerinsa"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/fimi-arts-plastiques-etudes"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/fimi-asinsa"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/fimi-cinema-etudes"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/fimi-danse-etudes"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/fimi-eurinsa"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/fimi-filiere-classique"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/fimi-filiere-ins-avenir"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/fimi-globalinsa"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/fimi-musique-etudes"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/fimi-sport-haut-niveau"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/fimi-theatre-etudes"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/genie-civil-et-urbanisme"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/genie-electrique"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/genie-energetique-et-genie-l-environnement"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/genie-industriel"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/genie-industriel-apprentissage"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/genie-mecanique"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/genie-mecanique-conception-innovation-produits"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/genie-mecanique-procedes-polymeres-avances-gmppa"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/gouvernance-responsabilites-securitequalite-environnement"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/ifa-informatique-filiere-par-apprentissage"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/informatique"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/ingenieur-specialisation-pourl-industrie-polymeres-et-composites-eco-responsabilite"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/international-bachelor-mechanical-materials-and-aerospace-engineering"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/manager-l-environnement-et-l-eco-efficacite"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/master-acoustique"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/master-en-risques-et-environnement"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/master-minds-ai"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/master-nanoscale-engineering-nse"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/materiaux"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/premier-cycle-insa-martinique-caraibe"
+      },
+      {
+        "type": "formation-",
+        "cle": "/fr/formation/telecommunications-services-usages"
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalog-mechanicalengineering-2025-2026.pdf",
+        "fiches": 147
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalogue-bachelor-pei-oyonax-24-25_fr.pdf",
+        "fiches": 82
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalogue-bachelor-pei-oyonax-25-26_fr.pdf",
+        "fiches": 82
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalogue-fimi-amerinsa-2026-2027.pdf",
+        "fiches": 47
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalogue-fimi-asinsa-2026-2027.pdf",
+        "fiches": 39
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalogue-fimi-classique-2026-2027.pdf",
+        "fiches": 39
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalogue-fimi-eurinsa-2026-2027.pdf",
+        "fiches": 47
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalogue-fimi-globalinsa-2026-2027.pdf",
+        "fiches": 39
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalogue-fimi-imc-2026-2027.pdf",
+        "fiches": 38
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalogue-fimi-insavenir-2026-2027.pdf",
+        "fiches": 28
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalogue-fimi-shn-2025-2026.pdf",
+        "fiches": 47
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalogue-fimi-shn-2026-2027.pdf",
+        "fiches": 47
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalogue-genie-civil-et-genie-urbain-2025-2026.pdf",
+        "fiches": 71
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalogue-genie-electrique-25-26-fr.pdf",
+        "fiches": 44
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalogue-genie-mecanique-2025-2026_0.pdf",
+        "fiches": 147
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalogue-gmcip-2024-2025.pdf",
+        "fiches": 69
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalogue-gmcip-2025-2026.pdf",
+        "fiches": 69
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/catalogue-international-bachelor-mechanical-materials-and-aerospace-engineering-2025-2026.pdf",
+        "fiches": 95
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/doc-catalog-information-science-and-technology-semester-2026-2027.pdf",
+        "fiches": 14
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/doc-catalog-mechanical-engineering-2026-2027.pdf",
+        "fiches": 177
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/doc-catalogue-biotechnologie-bioinformatique-2026-2027.pdf",
+        "fiches": 111
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/doc-catalogue-genie-energetique-et-genie-environnement-2026-2027_fr.pdf",
+        "fiches": 61
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/doc-catalogue-genie-industriel-2026-2027.pdf",
+        "fiches": 74
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/doc-catalogue-genie-mecanique-2026-2027.pdf",
+        "fiches": 177
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/doc-catalogue-genie-mecanique-procedex-polymeres-avances-2026-2027.pdf",
+        "fiches": 73
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/doc-catalogue-informatique-par-apprentissage-2026-2027.pdf",
+        "fiches": 67
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/doc-catalogue-materiaux-2026-2027.pdf",
+        "fiches": 65
+      },
+      {
+        "type": "pdf-",
+        "cle": "https://www.insa-lyon.fr/sites/www.insa-lyon.fr/files/doc-catalogue-telecoms-2026-2027.pdf",
+        "fiches": 102
+      }
+    ]
+  },
+  {
     "date": "2026-11-04T10:55:33.786Z",
     "resume": {
       "formations": 40,
