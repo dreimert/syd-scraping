@@ -1,5 +1,19 @@
 [
   {
+    "date": "2026-11-06T10:53:05.712Z",
+    "resume": {
+      "formations": 0,
+      "sansCatalogue": 0,
+      "pdfs": 0,
+      "fiches": 0,
+      "anomaliesFaceAFace": 0,
+      "anomaliesTotal": 0,
+      "retelecharges": 0,
+      "echecs": 0
+    },
+    "evenements": []
+  },
+  {
     "date": "2026-11-05T10:56:34.026Z",
     "resume": {
       "formations": 0,
