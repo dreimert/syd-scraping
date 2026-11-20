@@ -1,6 +1,15 @@
 {
-  "date": "2026-11-19T11:40:14.382Z",
+  "date": "2026-11-20T11:40:05.405Z",
   "formations": {},
   "pdfs": {},
-  "echecs": []
+  "echecs": [
+    {
+      "url": "/fr/formation/catalogue",
+      "erreur": "UND_ERR_CONNECT_TIMEOUT"
+    }
+  ],
+  "inaccessible": {
+    "url": "/fr/formation/catalogue",
+    "erreur": "UND_ERR_CONNECT_TIMEOUT"
+  }
 }

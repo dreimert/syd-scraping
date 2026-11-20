@@ -1,5 +1,29 @@
 [
   {
+    "date": "2026-11-20T11:40:05.405Z",
+    "resume": {
+      "formations": 0,
+      "sansCatalogue": 0,
+      "pdfs": 0,
+      "fiches": 0,
+      "anomaliesFaceAFace": 0,
+      "anomaliesTotal": 0,
+      "retelecharges": 0,
+      "echecs": 1
+    },
+    "evenements": [
+      {
+        "type": "échec",
+        "cle": "/fr/formation/catalogue",
+        "erreur": "UND_ERR_CONNECT_TIMEOUT"
+      }
+    ],
+    "inaccessible": {
+      "url": "/fr/formation/catalogue",
+      "erreur": "UND_ERR_CONNECT_TIMEOUT"
+    }
+  },
+  {
     "date": "2026-11-19T11:40:14.382Z",
     "resume": {
       "formations": 0,
